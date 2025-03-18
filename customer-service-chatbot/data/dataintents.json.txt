@@ -1,0 +1,34 @@
+{
+  "intents": [
+    {
+      "tag": "greeting",
+      "patterns": ["Hi", "Hello", "Hey", "Good morning", "Good afternoon", "Good evening"],
+      "responses": ["Hello!", "Hi there!", "Hey!", "Greetings!", "Hello, how can I help you today?"]
+    },
+    {
+      "tag": "order_status",
+      "patterns": ["What is my order status?", "Check order status", "Where is my order?", "Track my order"],
+      "responses": ["To check your order status, please provide your order number.", "Could you please give me your order number so I can look up the status?", "Let me check on your order status. What's your order number?"]
+    },
+    {
+      "tag": "product_inquiry",
+      "patterns": ["Tell me more about product X", "Product details for Y", "What are the features of Z?", "Information on item W"],
+      "responses": ["To provide details about that product, could you please specify the product name or ID?", "I can help with that. Which product are you interested in?", "Let me get some information for you. Which product are you asking about?"]
+    },
+    {
+      "tag": "contact_support",
+      "patterns": ["How can I contact support?", "Need to speak to someone", "Get in touch with support", "Customer service contact"],
+      "responses": ["You can contact our support team by email at support@example.com or by phone at 1-800-SUPPORT.", "Our customer support team is available via email and phone. See our contact page for details.", "For immediate assistance, please call us at 1-800-SUPPORT. You can also email us for less urgent inquiries."]
+    },
+    {
+      "tag": "goodbye",
+      "patterns": ["Bye", "Goodbye", "See you later", "Thanks, bye", "Thank you, goodbye"],
+      "responses": ["Goodbye!", "Have a great day!", "See you later!", "Thank you for contacting us!", "Goodbye, feel free to reach out if you have more questions."]
+    },
+    {
+      "tag": "default_fallback",
+      "patterns": [],
+      "responses": ["I'm sorry, I didn't understand that. Could you please rephrase?", "Could you say that another way?", "I'm still learning, could you try asking differently?", "I'm not sure I got that. How else can I help?"]
+    }
+  ]
+}

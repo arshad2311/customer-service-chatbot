@@ -1,0 +1,17 @@
+from flask import Flask, request, jsonify
+from chatbot import Chatbot  # Import Chatbot class from chatbot.py
+
+app = Flask(__name__)
+chatbot = Chatbot() # Initialize the chatbot
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    user_message = request.json.get('message')
+    if not user_message:
+        return jsonify({"error": "Message is required"}), 400
+
+    response = chatbot.get_response(user_message) # Get response from chatbot logic
+    return jsonify({"response": response})
+
+if __name__ == '__main__':
+    app.run(debug=True) # Run Flask development server (remove debug=True for production)

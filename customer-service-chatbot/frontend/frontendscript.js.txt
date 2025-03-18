@@ -1,0 +1,45 @@
+document.addEventListener('DOMContentLoaded', function() {
+    const userInput = document.getElementById('userInput');
+    const sendButton = document.getElementById('sendButton');
+    const chatLog = document.getElementById('chatLog');
+
+    sendButton.addEventListener('click', sendMessage);
+    userInput.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+    function sendMessage() {
+        const messageText = userInput.value.trim();
+        if (messageText === '') return;
+
+        appendMessage('user-message', messageText); // Add user message to chat log
+        userInput.value = ''; // Clear input field
+
+        // Send message to backend chatbot service
+        fetch('/chat', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ message: messageText })
+        })
+        .then(response => response.json())
+        .then(data => {
+            appendMessage('bot-message', data.response); // Add bot response to chat log
+        })
+        .catch(error => {
+            console.error('Error sending message to chatbot:', error);
+            appendMessage('bot-message', "Sorry, I'm having trouble connecting. Please try again later.");
+        });
+    }
+
+    function appendMessage(senderClass, message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message', senderClass);
+        messageDiv.textContent = message;
+        chatLog.appendChild(messageDiv);
+        chatLog.scrollTop = chatLog.scrollHeight; // Scroll to bottom of chat log
+    }
+});
